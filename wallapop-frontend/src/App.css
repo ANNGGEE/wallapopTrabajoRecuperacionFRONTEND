@@ -1,0 +1,88 @@
+/* App.css */
+
+/* Fondo general */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f3e8ff; /* lila pastel muy suave */
+  color: #4b2c91; /* morado oscuro para textos */
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedores principales */
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #ffffff; /* blanco para resaltar contenido */
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(75, 44, 145, 0.2);
+}
+
+/* Títulos */
+h1, h2 {
+  color: #6b39c5; /* lila más intenso para títulos */
+  text-align: center;
+}
+
+/* Formularios */
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px 0;
+  border: 2px solid #d3b3ff;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+input:focus, textarea:focus {
+  border-color: #a56eff;
+  box-shadow: 0 0 5px rgba(165, 110, 255, 0.5);
+}
+
+/* Botones */
+button {
+  background-color: #b78aff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #8c50ff;
+}
+
+/* Listados de elementos */
+article, li {
+  border-bottom: 1px solid #e1caff;
+  padding: 10px 0;
+}
+
+article:last-child, li:last-child {
+  border-bottom: none;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: #6b39c5;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Mensajes de alerta (por ejemplo alert de anuncio creado) */
+.alert {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  background-color: #d9b3ff;
+  color: #4b2c91;
+  text-align: center;
+}
