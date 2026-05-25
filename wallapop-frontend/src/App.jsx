@@ -24,6 +24,8 @@ import MisCompras from "./pages/MisCompras";
 import MisVentas from "./pages/MisVentas";
 import Categorias from "./pages/Categorias";
 
+import UsuarioPerfil from "./pages/UsuarioPerfil";
+
 function App() {
 
   const { token } = useAuth();
@@ -108,6 +110,12 @@ function App() {
               <Usuario />
             </PrivateRoute>
           }
+        />
+
+        <Route
+          path="/usuarios/:id"
+          element={
+            <UsuarioPerfil />}
         />
 
         <Route

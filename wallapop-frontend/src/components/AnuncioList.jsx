@@ -65,12 +65,12 @@ export default function AnuncioList() {
   };
 
   const anunciosFiltrados = categoriaSeleccionada
-    ? anuncios.filter(a =>
-        a.categorias?.some(
-          c => c.nombre === categoriaSeleccionada
-        )
-              )
-            : anuncios;
+  ? anuncios.filter(a =>
+      a.categorias?.some(
+        c => c === categoriaSeleccionada
+      )
+    )
+  : anuncios;
 
   return (
     <div className="container">

@@ -17,8 +17,19 @@ export default function UsuarioList() {
   };
 
   useEffect(() => {
+
+  if (!busqueda.trim()) {
     cargarUsuarios();
-  }, []);
+    return;
+  }
+
+  apiFetch(
+    `${API}/usuarios/buscar?texto=${busqueda}`
+  )
+    .then(res => res.json())
+    .then(data => setUsuarios(data));
+
+}, [busqueda]);
 
   // Borrar usuario con confirmación
   const handleDelete = (id) => {
@@ -88,8 +99,12 @@ export default function UsuarioList() {
 
           {/* Datos del usuario */}
           <div style={{ flex: 1 }}>
-            <strong>{u.nombre}</strong>
+            <Link to={`/usuarios/${u.id}`}>
+              <strong>{u.nombre}</strong>
+            </Link>
+
             <p>{u.email}</p>
+
           </div>
 
           {/* Botones de acción */}

@@ -54,13 +54,18 @@ export default function AnuncioForm({ anuncio, onGuardar }) {
 
     if (!anuncio) {
 
+      if (!titulo.trim()) {
+        alert("El título es obligatorio");
+        return;
+      }
+
       if (!descripcion.trim()) {
         alert("La descripción es obligatoria");
         return;
       }
 
-      if (!precio) {
-        alert("El precio es obligatorio");
+      if (!precio || Number(precio) <= 0) {
+        alert("El precio debe ser mayor que 0");
         return;
       }
 
