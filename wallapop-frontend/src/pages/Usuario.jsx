@@ -5,7 +5,7 @@ export default function Usuario() {
   return (
     <main className="container">
       <h1>Gestión de Usuarios</h1>
-      <UsuarioForm />
+      {/* <UsuarioForm /> */}
       <UsuarioList />
     </main>
   );

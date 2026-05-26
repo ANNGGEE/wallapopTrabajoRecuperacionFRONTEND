@@ -47,7 +47,9 @@ export default function AnuncioForm({ anuncio, onGuardar }) {
     const handleSubmit = (e) => {
   e.preventDefault();
 
+  // Validaciones solo para crear
   if (!anuncio) {
+
     if (!titulo.trim()) {
       alert("El título es obligatorio");
       return;
@@ -75,29 +77,16 @@ export default function AnuncioForm({ anuncio, onGuardar }) {
 
   const method = anuncio ? "PUT" : "POST";
 
-  const payload = {};
-
-  if (titulo.trim()) {
-    payload.titulo = titulo;
-  }
-
-  if (descripcion.trim()) {
-    payload.descripcion = descripcion;
-  }
-
-  if (precio !== "") {
-    payload.precio = parseFloat(precio);
-  }
-
-  if (imagen) {
-    payload.imagen = imagen;
-  }
-
-  if (categorias.length > 0) {
-    payload.categorias = categorias.map(c =>
+  // ENVIAR SIEMPRE TODO
+  const payload = {
+    titulo,
+    descripcion,
+    precio: parseFloat(precio),
+    imagen,
+    categorias: categorias.map(c =>
       typeof c === "string" ? c : c.nombre
-    );
-  }
+    )
+  };
 
   apiFetch(url, {
     method,
@@ -108,17 +97,22 @@ export default function AnuncioForm({ anuncio, onGuardar }) {
       return res.json();
     })
     .then(data => {
-      alert(anuncio ? "Anuncio actualizado" : "Anuncio creado");
 
-      if (!anuncio) {
-        setTitulo("");
-        setDescripcion("");
-        setCategorias([]);
-        setPrecio("");
-        setImagen("");
-      }
+      alert(anuncio
+        ? "Anuncio actualizado"
+        : "Anuncio creado"
+      );
+
+      // if (!anuncio) {
+      //   setTitulo("");
+      //   setDescripcion("");
+      //   setCategorias([]);
+      //   setPrecio("");
+      //   setImagen("");
+      // }
 
       if (onGuardar) onGuardar(data);
+
     })
     .catch(err => alert(err.message));
 };
