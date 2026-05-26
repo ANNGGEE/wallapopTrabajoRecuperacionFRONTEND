@@ -44,69 +44,84 @@ export default function AnuncioForm({ anuncio, onGuardar }) {
     }
   }, [anuncio]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const handleSubmit = (e) => {
+  e.preventDefault();
 
+  if (!anuncio) {
     if (!titulo.trim()) {
       alert("El título es obligatorio");
       return;
     }
 
-    if (!anuncio) {
-
-      if (!titulo.trim()) {
-        alert("El título es obligatorio");
-        return;
-      }
-
-      if (!descripcion.trim()) {
-        alert("La descripción es obligatoria");
-        return;
-      }
-
-      if (!precio || Number(precio) <= 0) {
-        alert("El precio debe ser mayor que 0");
-        return;
-      }
-
-      if (categorias.length === 0) {
-        alert("Selecciona al menos una categoría");
-        return;
-      }
+    if (!descripcion.trim()) {
+      alert("La descripción es obligatoria");
+      return;
     }
 
-    const url = anuncio ? `${API}/anuncios/${anuncio.id}` : `${API}/anuncios`;
-    const method = anuncio ? "PUT" : "POST";
+    if (!precio || Number(precio) <= 0) {
+      alert("El precio debe ser mayor que 0");
+      return;
+    }
 
-    apiFetch(url, {
-      method,
-      body: JSON.stringify({
-        titulo,
-        descripcion,
-        categorias: categorias.map(c =>
-          typeof c === "string" ? c : c.nombre
-        ),
-        precio: parseFloat(precio),
-        imagen // enviamos la imagen en Base64
-      }),
+    if (categorias.length === 0) {
+      alert("Selecciona al menos una categoría");
+      return;
+    }
+  }
+
+  const url = anuncio
+    ? `${API}/anuncios/${anuncio.id}`
+    : `${API}/anuncios`;
+
+  const method = anuncio ? "PUT" : "POST";
+
+  const payload = {};
+
+  if (titulo.trim()) {
+    payload.titulo = titulo;
+  }
+
+  if (descripcion.trim()) {
+    payload.descripcion = descripcion;
+  }
+
+  if (precio !== "") {
+    payload.precio = parseFloat(precio);
+  }
+
+  if (imagen) {
+    payload.imagen = imagen;
+  }
+
+  if (categorias.length > 0) {
+    payload.categorias = categorias.map(c =>
+      typeof c === "string" ? c : c.nombre
+    );
+  }
+
+  apiFetch(url, {
+    method,
+    body: JSON.stringify(payload),
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("Error al guardar el anuncio");
+      return res.json();
     })
-      .then(res => {
-        if (!res.ok) throw new Error("Error al guardar el anuncio");
-        return res.json();
-      })
-      .then(data => {
-        alert(anuncio ? "Anuncio actualizado" : "Anuncio creado");
-        if (!anuncio) {
-          setTitulo("");
-          setDescripcion("");
-          setCategorias([]);
-          setPrecio("");
-          setImagen("");
-        }
-        if (onGuardar) onGuardar(data);
-      })
-      .catch(err => alert(err.message));
-  };
+    .then(data => {
+      alert(anuncio ? "Anuncio actualizado" : "Anuncio creado");
+
+      if (!anuncio) {
+        setTitulo("");
+        setDescripcion("");
+        setCategorias([]);
+        setPrecio("");
+        setImagen("");
+      }
+
+      if (onGuardar) onGuardar(data);
+    })
+    .catch(err => alert(err.message));
+};
 
   return (
     <form onSubmit={handleSubmit} className="container">
@@ -115,7 +130,6 @@ export default function AnuncioForm({ anuncio, onGuardar }) {
       <label>
         Título
         <input
-          required
           value={titulo}
           onChange={e => setTitulo(e.target.value)}
         />
@@ -124,7 +138,6 @@ export default function AnuncioForm({ anuncio, onGuardar }) {
       <label>
         Descripción
         <textarea
-          required
           value={descripcion}
           onChange={e => setDescripcion(e.target.value)}
         />
@@ -203,7 +216,6 @@ export default function AnuncioForm({ anuncio, onGuardar }) {
       <label>
         Precio (€)
         <input
-          required
           type="number"
           min="0"
           step="0.01"

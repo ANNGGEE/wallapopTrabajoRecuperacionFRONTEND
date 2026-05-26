@@ -1,5 +1,9 @@
 /* App.css */
 
+* {
+  box-sizing: border-box;
+}
+
 /* Fondo general */
 body {
   font-family: 'Arial', sans-serif;
