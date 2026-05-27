@@ -26,7 +26,7 @@ export default function Register() {
     } catch (err) {
         alert(err.message);
     }
-    };
+  };
 
   return (
     <div className="container">

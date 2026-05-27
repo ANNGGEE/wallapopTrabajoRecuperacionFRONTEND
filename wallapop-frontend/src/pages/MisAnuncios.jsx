@@ -8,9 +8,7 @@ export default function MisAnuncios() {
 
   const [anuncios, setAnuncios] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const { usuario } = useAuth();
-
   const handleDelete = (id) => {
 
     if (!window.confirm("¿Seguro?")) return;
@@ -41,36 +39,36 @@ export default function MisAnuncios() {
       })
       .catch(() => setLoading(false));
 
-  }, [usuario]);
+    }, [usuario]);
 
-  if (!usuario) {
+    if (!usuario) {
+      return (
+        <main className="container">
+          <p>Debes iniciar sesión</p>
+        </main>
+      );
+    }
+
+    if (loading) {
+      return (
+        <main className="container">
+          <p>Cargando anuncios...</p>
+        </main>
+      );
+    }
+
     return (
       <main className="container">
-        <p>Debes iniciar sesión</p>
-      </main>
-    );
-  }
 
-  if (loading) {
-    return (
-      <main className="container">
-        <p>Cargando anuncios...</p>
-      </main>
-    );
-  }
+        <h2>Mis anuncios</h2>
 
-  return (
-    <main className="container">
+        {anuncios.length === 0 ? (
 
-      <h2>Mis anuncios</h2>
+          <p>No tienes anuncios aún</p>
 
-      {anuncios.length === 0 ? (
+        ) : (
 
-        <p>No tienes anuncios aún</p>
-
-      ) : (
-
-        anuncios.map(a => (
+          anuncios.map(a => (
 
           <article
             key={a.id}
@@ -118,9 +116,7 @@ export default function MisAnuncios() {
             <div>
 
               <strong>{a.titulo}</strong>
-
               <p>{a.descripcion}</p>
-
               <p>{a.precio} €</p>
 
               <div style={{ marginTop: "10px" }}>

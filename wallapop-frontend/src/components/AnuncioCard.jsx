@@ -89,12 +89,12 @@ export default function AnuncioCard({ a, usuario, onDelete, onComprar }) {
         {/* Comprar */}
         {!a.comprador ? (
           a.usuario?.id !== usuario?.id ? (
-          <button
-            onClick={() => onComprar(a.id)}
-            style={{ marginTop: "10px" }}
-          >
-            Comprar
-          </button>         
+            <button
+              onClick={() => onComprar(a.id)}
+              style={{ marginTop: "10px" }}
+            >
+              Comprar
+            </button>         
            ) : (
             <button
               disabled
@@ -113,12 +113,12 @@ export default function AnuncioCard({ a, usuario, onDelete, onComprar }) {
               ? "Lo compraste tú"
               : `Comprado por ${a.comprador?.nombre}`
             }
-          </button>
+        </button>
         )}
 
         {/* Acciones */}
         {Number(a.usuario?.id) === Number(usuario?.id) && (
-        <>
+          <>
           <Link to={`/editar/${a.id}`}>
             <button>Editar</button>
           </Link>

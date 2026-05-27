@@ -8,13 +8,13 @@ export default function UsuarioForm({ usuario, onGuardar }) {
   const [password, setPassword] = useState("");
   const [imagen, setImagen] = useState("");
 
-  // Rellena los campos cuando llega el usuario (modo edición)
+  // Rellena los campos cuando llega el usuario, en el modo edición 
   useEffect(() => {
     if (usuario) {
       setNombre(usuario.nombre || "");
       setEmail(usuario.email || "");
       setImagen(usuario.imagen || "");
-      setPassword(""); // nunca mostramos la contraseña
+      setPassword(""); // nunca mostrar la contraseña
     }
   }, [usuario]);
 

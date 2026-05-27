@@ -23,27 +23,28 @@ export default function MisCompras() {
         setAnuncios(compras);
       });
 
-  }, [usuario]);
+    }, [usuario]);
 
-  return (
-    <main className="container">
+    return (
+      <main className="container">
 
-      <h2>Mis compras</h2>
+        <h2>Mis compras</h2>
 
-      {anuncios.length === 0 ? (
-        <p>No tienes compras aún</p>
-      ) : (
-        anuncios.map(a => (
-          <article
-  key={a.id}
-  style={{
-    display: "flex",
-    gap: "20px",
-    alignItems: "center",
-    padding: "20px 0",
-    borderBottom: "1px solid #d8b4fe"
-  }}
->
+        {anuncios.length === 0 ? (
+          <p>No tienes compras aún</p>
+        ) : (
+          anuncios.map(a => (
+            <article
+              key={a.id}
+              style={{
+                display: "flex",
+                gap: "20px",
+                alignItems: "center",
+                padding: "20px 0",
+                borderBottom: "1px solid #d8b4fe"
+              }}
+            >
+              
   {/* Imagen */}
     <div
       style={{

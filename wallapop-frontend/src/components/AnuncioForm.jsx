@@ -28,7 +28,7 @@ export default function AnuncioForm({ anuncio, onGuardar }) {
     }
   };
 
-    useEffect(() => {
+  useEffect(() => {
     if (anuncio) {
       setTitulo(anuncio.titulo || "");
       setDescripcion(anuncio.descripcion || "");
@@ -44,7 +44,7 @@ export default function AnuncioForm({ anuncio, onGuardar }) {
     }
   }, [anuncio]);
 
-    const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
   e.preventDefault();
 
   // Validaciones solo para crear
@@ -164,8 +164,8 @@ export default function AnuncioForm({ anuncio, onGuardar }) {
                 borderRadius: "20px",
                 cursor: "pointer",
                 background: categorias.includes(cat)
-                ? "#b78aff"
-                : "#eee",
+                  ? "#b78aff"
+                  : "#eee",
 
               color: categorias.includes(cat)
                 ? "white"

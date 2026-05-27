@@ -110,19 +110,19 @@ export default function UsuarioList() {
           {/* Botones de acción */}
           {usuario?.id === u.id && (
   <>
-          <Link to={`/usuarios/editar/${u.id}`}>
-            <button className="outline">Editar</button>
-          </Link>
+            <Link to={`/usuarios/editar/${u.id}`}>
+              <button className="outline">Editar</button>
+            </Link>
 
-          <button
-            className="secondary"
-            onClick={() => handleDelete(u.id)}
-            style={{ marginLeft: "10px" }}
-          >
-            Borrar
-          </button>
-        </>
-      )}
+            <button
+              className="secondary"
+              onClick={() => handleDelete(u.id)}
+              style={{ marginLeft: "10px" }}
+            >
+              Borrar
+            </button>
+          </>
+        )}
         </article>
       ))}
     </div>
