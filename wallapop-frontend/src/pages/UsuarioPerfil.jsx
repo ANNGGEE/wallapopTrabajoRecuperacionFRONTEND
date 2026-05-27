@@ -35,7 +35,9 @@ export default function UsuarioPerfil() {
           alt={usuario.nombre}
           style={{
             width: "120px",
-            borderRadius: "50%"
+            height: "120px",
+            borderRadius: "50%",
+            objectFit: "cover"
           }}
         />
       )}
@@ -45,9 +47,57 @@ export default function UsuarioPerfil() {
       <h3>Sus anuncios</h3>
 
       {anuncios.map(a => (
-        <article key={a.id}>
-          <strong>{a.titulo}</strong>
-          <p>{a.precio} €</p>
+        <article
+          key={a.id}
+          style={{
+            display: "flex",
+            gap: "20px",
+            alignItems: "center",
+            padding: "20px 0",
+            borderBottom: "1px solid #d8b4fe"
+          }}
+        >
+
+          {/* Imagen */}
+          <div
+            style={{
+              width: "120px",
+              height: "120px",
+              flexShrink: 0,
+              background: "#f3f3f3",
+              borderRadius: "10px",
+              overflow: "hidden",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            {a.imagen ? (
+              <img
+                src={a.imagen}
+                alt={a.titulo}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover"
+                }}
+              />
+            ) : (
+              <span style={{ color: "#888" }}>
+                Sin imagen
+              </span>
+            )}
+          </div>
+
+          {/* Información */}
+          <div>
+            <strong>{a.titulo}</strong>
+
+            <p>{a.descripcion}</p>
+
+            <p>{a.precio} €</p>
+          </div>
+
         </article>
       ))}
 
